@@ -1,7 +1,18 @@
-from dotenv import load_dotenv
-import os
-load_dotenv()
+from flask import *
+from flask_cors import *
+
+from api.gamesession import session
+from util.error_advice import advice
+
+app = Flask(__name__)
+
+# routes and error handle routes
+app.register_blueprint(session)
+
+app.register_blueprint(advice)
 
 
-SECRET_KEY = os.getenv("EMAIL")
-print(SECRET_KEY)
+if __name__ == '__main__':
+    CORS(app)  # lets other programs consume app
+    app.debug = True
+    app.run()
