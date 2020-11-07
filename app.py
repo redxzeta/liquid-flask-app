@@ -1,4 +1,7 @@
-from flask import *
-from flask_cors import *
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-print('hello world')
+
+SECRET_KEY = os.getenv("EMAIL")
+print(SECRET_KEY)
