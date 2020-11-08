@@ -5,11 +5,11 @@ session = Blueprint("session", __name__)
 session_service = SessionService()
 
 
-@session.route('/session', methods=['POST'])
-def add_student():
+@session.route('/session/<uid>', methods=['POST'])
+def add_student(uid):
     obj = request.get_json()
     return jsonify(
-        session_service.add_session(obj)
+        session_service.add_session(uid=uid, session=obj, )
     )
 
 
@@ -21,3 +21,9 @@ def get_students():
 @session.route('/session/<_id>', methods=['DELETE'])
 def delete_student(_id):
     return session_service.delete_session(_id)
+
+
+@session.route('/session/<_id>', methods=['PUT'])
+def put_game_workout(_id):
+    obj = request.get_json()
+    return jsonify(session_service.add_game_session(game=obj, _id=_id))
