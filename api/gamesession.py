@@ -18,6 +18,11 @@ def get_students():
     return jsonify(session_service.get_sessions())
 
 
+@session.route('/session/<uid>', methods=['GET'])
+def get_session_by_id(uid):
+    return jsonify(session_service.get_session_by_id(uid))
+
+
 @session.route('/session/<_id>', methods=['DELETE'])
 def delete_student(_id):
     return session_service.delete_session(_id)
