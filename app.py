@@ -5,12 +5,12 @@ from api.gamesession import session
 from util.error_advice import advice
 
 app = Flask(__name__)
-
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 # routes and error handle routes
 app.register_blueprint(session)
 
 app.register_blueprint(advice)
-
 
 if __name__ == '__main__':
     CORS(app)  # lets other programs consume app
